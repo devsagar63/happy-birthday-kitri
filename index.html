@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Happy Borahae Birthday Kitri!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Signika|Montserrat:700' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="loading.css">
+    
+    <style>
+        /* PRETTY BTS THEME & MOBILE OPTIMIZATIONS */
+        :root {
+            --bts-purple: #6a1b9a;
+            --bts-light: #ab47bc;
+            --glass: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        body { 
+            overflow-x: hidden; 
+            transition: background 1.5s ease;
+            font-family: 'Signika', sans-serif;
+            background-color: #f3e5f5; /* Initial soft lavender */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Smooth Background Transitions */
+        .purple-theme { background: linear-gradient(135deg, #e1bee7 0%, #f3e5f5 100%) !important; }
+        .borahae-theme { background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%) !important; }
+
+        /* Loading Screen */
+        .loading {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #3d105e;
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* Glassmorphism Message Box */
+        .message {
+            display: none;
+            padding: 30px 20px;
+            text-align: center;
+            color: #4a148c;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+        
+        .borahae-theme .message {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .message p {
+            display: none;
+            font-size: 20px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Pretty Buttons */
+        .navbar-fixed-bottom {
+            background: transparent;
+            padding: 20px 0;
+            border: none;
+        }
+
+        .btn-bts {
+            width: 85%;
+            max-width: 300px;
+            margin: 8px auto !important;
+            display: block;
+            padding: 12px;
+            border-radius: 50px;
+            background: var(--bts-purple);
+            color: white;
+            border: 2px solid var(--glass-border);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-bts:hover {
+            transform: translateY(-3px);
+            background: var(--bts-light);
+            color: white;
+        }
+
+        /* Balloon Styling */
+        .balloons {
+            width: 70px;
+            height: 90px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -150px;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2);
+        }
+
+        .balloons h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            color: white;
+            margin: 0;
+        }
+
+        /* Banner */
+        .bannar {
+            width: 90%;
+            max-width: 500px;
+            margin-top: -1000px;
+            transition: margin-top 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bannar-come { margin-top: 20px; }
+
+        /* Cake Container */
+        .cake-cover { margin: 40px 0; display: flex; justify-content: center; }
+
+        @media only screen and (max-width: 768px) {
+            .message p { font-size: 18px; }
+            .balloons { width: 60px; height: 80px; }
+            .balloons h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading">
+        <img src="https://iili.io/BPQdCP4.th.gif" alt="BTS Logo" width="80" class="animate-pulse">
+    </div>
+    
+    <audio class="song" loop style="display:none;">
+        <source src="https://o.uguu.se/mbwFHRcE.mp3"></source>
+    </audio>
+
+    <div class="balloons" id="b1"><h2>K</h2></div>
+    <div class="balloons" id="b2"><h2>I</h2></div>
+    <div class="balloons" id="b3"><h2>T</h2></div>
+    <div class="balloons" id="b4"><h2>R</h2></div>
+    <div class="balloons" id="b5"><h2>I</h2></div>
+
+    <div class="container-fluid">
+        <div class="row text-center" style="padding-top: 10px;">
+            <div class="col-xs-2"><div class="bulb" id="bulb_purple"></div></div>
+            <div class="col-xs-2"><div class="bulb" id="bulb_red"></div></div>
+            <div class="col-xs-2"><div class="bulb" id="bulb_blue"></div></div>
+            <div class="col-xs-2"><div class="bulb" id="bulb_green"></div></div>
+            <div class="col-xs-2"><div class="bulb" id="bulb_pink"></div></div>
+            <div class="col-xs-2"><div class="bulb" id="bulb_orange"></div></div>
+        </div>
+
+        <div class="row text-center">
+            <img src="https://i.ibb.co/GvVyCRvd/Gemini-Generated-Image-pilldppilldppill.png" class="bannar" alt="Happy Birthday Banner">
+        </div>
+
+        <div class="row cake-cover">
+            <div class="cake" style="display:none;">
+                <div class="velas"><div class="fuego"></div><div class="fuego"></div><div class="fuego"></div></div>
+                <div class="cobertura"></div>
+                <div class="bizcocho"></div>
+            </div>
+        </div>
+
+        <div class="row message">
+    <div class="col-md-12">
+        <p>Hi Kitri... ✨</p>
+        <p>It's finally April 28th.</p>
+        <p>A quiet, beautiful day for a beautiful soul.</p>
+        <p>I know you don't need fancy things,</p>
+        <p>Just a little bit of love and a purple heart.</p>
+        <p>Another year has gone by...</p>
+        <p>Like a soft breeze in the <strong>Spring Day</strong>.</p>
+        <p>You make the world better just by being you,</p>
+        <p>Simple, kind, and genuine.</p>
+        <p>Like a BTS song that stays in the heart,</p>
+        <p>You have a magic that’s all your own.</p>
+        <p>I made this small space for you</p>
+        <p>To celebrate the person you are.</p>
+        <p>No loud lights, just a little warmth</p>
+        <p>To wish you the happiest of birthdays.</p>
+        <p>I hope your day is filled with peace</p>
+        <p>And the kind of joy that makes you smile softly.</p>
+        <p>May your path always be <strong>smooth like butter</strong>,</p>
+        <p>And your heart always stay at ease.</p>
+        <p>Thank you for being part of my universe,</p>
+        <p>And for the simple friendship we share.</p>
+        <p>Don't ever change for the world,</p>
+        <p>Because you are perfect exactly as you are.</p>
+        <p>Indeed...</p>
+        <p>Just remember,</p>
+        <p>Whenever you feel like a 'lonely whale',</p>
+        <p>I'll be right here in your corner.</p>
+        <p>I hope this year brings you quiet happiness</p>
+        <p>And memories that stay beautiful forever.</p>
+        <p>Lastly...</p>
+        <p>Happy Birthday, Kitri.</p>
+        <p><strong>I Purple You. 💜</strong></p>
+    </div>
+</div>
+
+        <div class="navbar navbar-fixed-bottom">
+            <div class="row text-center">
+                <button class="btn btn-bts" id="turn_on">Light the Stage</button>
+                <button class="btn btn-bts" id="play" style="display:none;">Play BTS Vibes</button>
+                <button class="btn btn-bts" id="bannar_coming" style="display:none;">Decorate Venue</button>
+                <button class="btn btn-bts" id="balloons_flying" style="display:none;">Release the Magic</button>
+                <button class="btn btn-bts" id="cake_fadein" style="display:none;">The Borahae Cake</button>
+                <button class="btn btn-bts" id="light_candle" style="display:none;">Light the Dreams</button>
+                <button class="btn btn-bts" id="wish_message" style="display:none;">For Kitri</button>
+                <button class="btn btn-bts" id="story" style="display:none;">A Purple Message</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="effect.js"></script>
+    
+    <script>
+        $(window).load(function(){
+            $('.loading').fadeOut('slow');
+        });
+
+        $('document').ready(function(){
+            var vw = $(window).width();
+            var vh = $(window).height();
+
+            $('#turn_on').click(function(){
+                $('body').addClass('purple-theme');
+                $('.bulb').addClass('bulb-glow-purple');
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#play').fadeIn('slow');
+                });
+            });
+
+            $('#play').click(function(){
+                $('.song')[0].play();
+                $('body').addClass('borahae-theme');
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#bannar_coming').fadeIn('slow');
+                });
+            });
+
+            $('#bannar_coming').click(function(){
+                $('.bannar').addClass('bannar-come');
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#balloons_flying').fadeIn('slow');
+                });
+            });
+
+            function loopBalloons(id) {
+                var randleft = (vw - 80) * Math.random();
+                var randtop = (vh / 2) * Math.random();
+                $(id).animate({left:randleft, bottom:randtop}, 10000, function(){
+                    loopBalloons(id);
+                });
+            }
+
+            $('#balloons_flying').click(function(){
+                $('.balloons').css('opacity', '0.9');
+                $('.balloons').css('background', 'linear-gradient(45deg, #8e24aa, #ba68c8)');
+                loopBalloons('#b1'); loopBalloons('#b2'); loopBalloons('#b3'); loopBalloons('#b4'); loopBalloons('#b5');
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#cake_fadein').fadeIn('slow');
+                });
+            });
+
+            $('#cake_fadein').click(function(){
+                $('.cake').fadeIn('slow');
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#light_candle').fadeIn('slow');
+                });
+            });
+
+            $('#light_candle').click(function(){
+                $('.fuego').fadeIn('slow');
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#wish_message').fadeIn('slow');
+                });
+            });
+
+            $('#wish_message').click(function(){
+                var center = vw / 2;
+                var spacing = vw < 768 ? 55 : 90;
+                
+                $('.balloons').stop();
+                $('#b1').animate({top: vh*0.2, left: center - (spacing * 2)}, 1000);
+                $('#b2').animate({top: vh*0.2, left: center - (spacing * 1)}, 1000);
+                $('#b3').animate({top: vh*0.2, left: center}, 1000);
+                $('#b4').animate({top: vh*0.2, left: center + (spacing * 1)}, 1000);
+                $('#b5').animate({top: vh*0.2, left: center + (spacing * 2)}, 1000);
+                
+                $(this).fadeOut('slow').promise().done(function(){
+                    $('#story').fadeIn('slow');
+                });
+            });
+
+            function msgLoop (i) {
+                $("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
+                    i++;
+                    $("p:nth-child("+i+")").fadeIn('slow').delay(1200);
+                    if(i == 32) { // Based on the number of <p> tags
+                        $('.cake').fadeIn('fast');
+                    } else {
+                        msgLoop(i);
+                    }
+                });
+            }
+
+            $('#story').click(function(){
+                $(this).fadeOut('slow');
+                $('.cake').fadeOut('fast').promise().done(function(){
+                    $('.message').fadeIn('slow');
+                    msgLoop(1);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
